@@ -1,9 +1,8 @@
 import React from "react";
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
-import HomeCards from "./components/HomeCards";
-import JobListings from "./components/JobListings";
-import ViewAllJobs from "./components/ViewAllJobs";
+import HomePage from "./pages/HomePage";
+import JobsPage from "./pages/JobsPage";
+import MainLayout from "./layouts/MainLayout";
+import NotFoundPage from "./pages/NotFoundPage";
 
 import {
   Route,
@@ -13,7 +12,13 @@ import {
 } from "react-router-dom";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/about" element={<h1>My App</h1>} />)
+  createRoutesFromElements(
+    <Route path="/" element={<MainLayout />}>
+      <Route index element={<HomePage />} />
+      <Route path="/jobs" element={<JobsPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Route>
+  )
 );
 
 const App = () => {
